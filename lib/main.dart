@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+
+//goal for layout: Display city info in center
+//Display weather info below that
+
 void main() {
   runApp(const MyApp());
 }
-
 
 
 class MyApp extends StatelessWidget {
@@ -77,6 +80,51 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Text(location["city"]!);
+
+    //return Scaffold(body: Text(location["city"]!));
+    return const Scaffold(body: Center(
+      child: Column(
+        //mainAxisAlignment: center
+        children: [
+        BoxPlaceholder(height: 100, width: 300, text: "Weather App",),
+        BoxPlaceholder(height: 100, width: 300, padding: 20, text: "stuff"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BoxPlaceholder(height: 100, width: 100, text: "temperature"),
+            BoxPlaceholder(height: 100, width: 100, text: "wind"), 
+            BoxPlaceholder(height: 100, width: 100, text: "forcast") 
+          ],
+        )
+        ]
+      )
+    ));
+  }
+}
+
+class BoxPlaceholder extends StatelessWidget {
+  final double? height;
+  final double? width;
+  final double padding;
+  final String text;
+  final Color color;
+
+  const BoxPlaceholder({
+    super.key,
+    required this.height,
+    required this.width,
+    this.padding = 0,
+    this.text = "",
+    this.color = Colors.black
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      //child: SizedBox(height: height, width: width, child: Placeholder(color: Colors.indigo, child: Center(child: Text(text))),
+      child: SizedBox(height: height, width: width, child: Center(child: Text(text)),
+
+    ));
   }
 }
